@@ -75,7 +75,7 @@ if [ "$LOCAL_MIRROR" = true ]; then
   fi
 
   echo ">> [$(date)] Syncing mirror repository" | tee -a "$repo_log"
-  repo sync --force-sync --no-clone-bundle &>> "$repo_log"
+  repo sync -j$(nproc) --force-sync --no-clone-bundle &>> "$repo_log"
 fi
 
 for branch in ${BRANCH_NAME//,/ }; do
@@ -135,7 +135,7 @@ for branch in ${BRANCH_NAME//,/ }; do
 
     echo ">> [$(date)] Syncing branch repository" | tee -a "$repo_log"
     builddate=$(date +%Y%m%d)
-    repo sync -c --force-sync &>> "$repo_log"
+    repo sync -j$(nproc) -c --force-sync &>> "$repo_log"
 
     android_version=$(sed -n -e 's/^\s*PLATFORM_VERSION\.OPM1 := //p' build/core/version_defaults.mk)
     if [ -z $android_version ]; then
@@ -263,12 +263,12 @@ for branch in ${BRANCH_NAME//,/ }; do
           if [ "$LOCAL_MIRROR" = true ]; then
             echo ">> [$(date)] Syncing mirror repository" | tee -a "$repo_log"
             cd "$MIRROR_DIR"
-            repo sync --force-sync --no-clone-bundle &>> "$repo_log"
+	    repo sync -j$(nproc) --force-sync --no-clone-bundle &>> "$repo_log"
           fi
 
           echo ">> [$(date)] Syncing branch repository" | tee -a "$repo_log"
           cd "$SRC_DIR/$branch_dir"
-          repo sync -c --force-sync &>> "$repo_log"
+	  repo sync -j$(nproc) -c --force-sync &>> "$repo_log"
         fi
 
         if [ "$BUILD_OVERLAY" = true ]; then
