@@ -17,6 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# create directories
+mkdir -p $MIRROR_DIR
+mkdir -p $SRC_DIR
+mkdir -p $TMP_DIR
+mkdir -p $CCACHE_DIR
+mkdir -p $ZIP_DIR
+mkdir -p $LMANIFEST_DIR
+mkdir -p $DELTA_DIR
+mkdir -p $KEYS_DIR
+mkdir -p $LOGS_DIR
+mkdir -p $USERSCRIPTS_DIR
+
 # Copy the user scripts
 mkdir -p /root/userscripts
 cp -r $USERSCRIPTS_DIR/. /root/userscripts
