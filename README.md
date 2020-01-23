@@ -138,8 +138,8 @@ this guide, can be found in the [Dockerfile][dockerfile].
 
 ## Volumes
 
-You also have to provide Docker some volumes, where it'll store the source, the
-resulting builds, the cache and so on. The volumes are:
+You also have to provide Docker a volume, where it'll store the source, the
+resulting builds, the cache and so on. The directories are:
 
  * `/srv/src`, for the LineageOS sources
  * `/srv/zips`, for the output builds
